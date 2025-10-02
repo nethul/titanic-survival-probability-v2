@@ -22,7 +22,7 @@ export default function ResultsPage({ survived, probability, name, formData, onR
   const [showShareMenu, setShowShareMenu] = useState(false);
 
   const shareMessage = `I just discovered my Titanic survival rate would be ${probability}%! 🚢 Think you'd survive? Test yours now!`;
-  const shareUrl = window.location.href;
+  const shareUrl = 'www.titanicsurvival.app';
 
   const handleShare = (platform: string) => {
     const encodedMessage = encodeURIComponent(shareMessage);
