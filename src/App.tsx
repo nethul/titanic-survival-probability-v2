@@ -6,6 +6,7 @@ import SurvivalForm from './components/SurvivalForm';
 import ResultsPage from './components/ResultsPage';
 import { supabase } from './lib/supabase';
 import { calculateSurvival } from './utils/survivalCalculator';
+import FactsSlideshow from './components/FactsSlideshow';
 
 interface FormData {
   name: string;
@@ -111,6 +112,7 @@ function App() {
           <HeroSection onCheckSurvival={handleCheckSurvival} />
           <StatsSection totalChecks={totalChecks} />
           <SurvivalForm onSubmit={handleFormSubmit} />
+          <FactsSlideshow />
         </>
       )}
     </div>
