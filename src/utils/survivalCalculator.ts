@@ -15,7 +15,7 @@ export async function calculateSurvival(data: PassengerData): Promise<{ survived
     const parch = data.parents + data.children;
 
     // Call your Heroku API
-    const response = await fetch(`${import.meta.env.HEROKU_API_KEY}`, {
+    const response = await fetch(`${import.meta.env.VITE_HEROKU_API_KEY}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
