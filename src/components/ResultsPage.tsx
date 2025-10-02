@@ -107,17 +107,7 @@ export default function ResultsPage({ survived, probability, name, formData, onR
           </p>
         </div>
 
-        <SurvivalFactorsBreakdown 
-          userData={{
-            gender: formData.gender,
-            age: formData.age,
-            ticketClass: formData.ticketClass,
-            familySize: formData.parents + formData.children + formData.siblings + formData.spouse,
-          }}
-          probability={probability}
-        />
-
-        {/* Share Section */}
+              {/* Share Section */}
         <div className="bg-gradient-to-r from-[#d4a574] to-[#c89560] rounded-2xl p-8 mb-8 border-2 border-[#b8894f] shadow-2xl relative overflow-hidden">
           <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
           <div className="relative z-10">
@@ -194,6 +184,18 @@ export default function ResultsPage({ survived, probability, name, formData, onR
             )}
           </div>
         </div>
+
+        <SurvivalFactorsBreakdown 
+          userData={{
+            gender: formData.gender,
+            age: formData.age,
+            ticketClass: formData.ticketClass,
+            familySize: formData.parents + formData.children + formData.siblings + formData.spouse,
+          }}
+          probability={probability}
+        />
+
+  
 
         <button
           onClick={onReset}
