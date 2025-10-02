@@ -4,6 +4,7 @@ import HeroSection from './components/HeroSection';
 import StatsSection from './components/StatsSection';
 import SurvivalForm from './components/SurvivalForm';
 import ResultsPage from './components/ResultsPage';
+import Footer from './components/Footer';
 import { supabase } from './lib/supabase';
 import { calculateSurvival } from './utils/survivalCalculator';
 import FactsSlideshow from './components/FactsSlideshow';
@@ -116,6 +117,7 @@ function App() {
           <StatsSection totalChecks={totalChecks} />
           <SurvivalForm onSubmit={handleFormSubmit} />
           <FactsSlideshow />
+          <Footer />
         </>
       )}
     </div>
