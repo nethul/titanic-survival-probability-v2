@@ -128,12 +128,13 @@ export default function SurvivalForm({ onSubmit }: SurvivalFormProps) {
                     { value: 0, label: 'No' },
                   ].map((option) => (
                     <button
+                      type="button"
                       key={option.value}
                       onClick={() => setFormData({ ...formData, spouse: option.value })}
                       className={`flex-1 py-2 rounded border-2 transition-all ${formData.spouse === option.value
-                        ? 'bg-[#7a6550] border-[#7a6550] text-white'
-                        : 'bg-white/60 border-[#d4c4a8] text-[#2a2117] hover:border-[#7a6550]'
-                        }`}
+                      ? 'bg-[#7a6550] border-[#7a6550] text-white'
+                      : 'bg-white/60 border-[#d4c4a8] text-[#2a2117] hover:border-[#7a6550]'
+                      }`}
                     >
                       {option.label}
                     </button>

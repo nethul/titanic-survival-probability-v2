@@ -26,6 +26,7 @@ function App() {
     survived: boolean;
     probability: number;
     name: string;
+    formData: FormData;
   } | null>(null);
 
   useEffect(() => {
@@ -59,7 +60,7 @@ function App() {
   };
 
   const handleFormSubmit = async (data: FormData) => {
-    const survivalResult = calculateSurvival({
+    const survivalResult = await calculateSurvival({
       gender: data.gender,
       age: data.age,
       ticketClass: data.ticketClass,
@@ -84,6 +85,7 @@ function App() {
     setResult({
       ...survivalResult,
       name: data.name,
+      formData: data,
     });
     setShowResults(true);
     await fetchTotalSubmissions();
@@ -105,6 +107,7 @@ function App() {
           survived={result.survived}
           probability={result.probability}
           name={result.name}
+          formData={result.formData}
           onReset={handleReset}
         />
       ) : (
