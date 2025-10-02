@@ -1,4 +1,4 @@
-import { Heart, Anchor, ExternalLink, Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Heart, Anchor, ExternalLink, Github, Linkedin, Twitter, Mail, Network } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -83,11 +83,14 @@ export default function Footer() {
           </div>
 
           <div className="md:col-span-1">
-            <h3 className="text-xl font-serif text-white mb-4">Connect</h3>
+            <div className="flex items-center gap-2 mb-3">
+            <Network className="text-[#d4a574]" size={24} />
+            <h3 className="text-xl font-serif text-white">Connect</h3>
+            </div>
             <p className="text-[#d4c4a8] mb-4">Created by Nethul Nanayakkara</p>
             <div className="flex gap-3">
               <a
-                href="https://github.com/nethulnanayakkara"
+                href="https://github.com/nethul"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#3a2f23] hover:bg-[#5a4f43] p-3 rounded-lg transition-colors"
@@ -96,7 +99,7 @@ export default function Footer() {
                 <Github size={20} className="text-[#d4c4a8]" />
               </a>
               <a
-                href="https://linkedin.com/in/nethulnanayakkara"
+                href="https://www.linkedin.com/in/nethul-nanayakkara-8214b0355/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#3a2f23] hover:bg-[#5a4f43] p-3 rounded-lg transition-colors"
@@ -104,7 +107,7 @@ export default function Footer() {
               >
                 <Linkedin size={20} className="text-[#d4c4a8]" />
               </a>
-              <a
+              {/* <a
                 href="https://twitter.com/nethulnanayakkara"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -112,9 +115,9 @@ export default function Footer() {
                 aria-label="Twitter"
               >
                 <Twitter size={20} className="text-[#d4c4a8]" />
-              </a>
+              </a> */}
               <a
-                href="mailto:contact@nethulnanayakkara.com"
+                href="mailto:nethulnanayakkara2005@gmail.com"
                 className="bg-[#3a2f23] hover:bg-[#5a4f43] p-3 rounded-lg transition-colors"
                 aria-label="Email"
               >
@@ -129,7 +132,7 @@ export default function Footer() {
             © 2025 Nethul Nanayakkara. All rights reserved.
           </p>
           <p className="text-[#d4c4a8] flex items-center justify-center gap-2">
-            Made with <Heart size={16} className="text-[#d4a574] fill-[#d4a574]" /> for education & remembrance
+            Made with <Heart size={16} className="text-[#d4a574] fill-[#d4a574]" /> for tech enthusiasts and history buffs.
           </p>
         </div>
       </div>

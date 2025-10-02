@@ -22,16 +22,17 @@ export default function Navbar({ onNavigate }: NavbarProps) {
               Home
             </button>
             <button
-              onClick={() => onNavigate('details')}
-              className="text-[#3a2f23] hover:text-[#6b5d4f] transition-colors font-medium"
+              className='text-[#3a2f23] hover:text-[#6b5d4f] transition-colors font-medium'
+              onClick={() => window.open('https://en.wikipedia.org/wiki/RMS_Titanic', '_blank', 'noopener,noreferrer')}
             >
-              Titanic Ship Details
+              Ship Details
             </button>
+
             <button
-              onClick={() => onNavigate('stories')}
-              className="text-[#3a2f23] hover:text-[#6b5d4f] transition-colors font-medium"
+              className='text-[#3a2f23] hover:text-[#6b5d4f] transition-colors font-medium'
+              onClick={() => window.open('https://en.wikipedia.org/wiki/Passengers_of_the_Titanic', '_blank', 'noopener,noreferrer')}
             >
-              Stories of Survivors
+              Passenger Details
             </button>
             <button
               onClick={() => onNavigate('check')}
