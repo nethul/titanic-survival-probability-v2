@@ -1,12 +1,10 @@
-import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import StatsSection from './components/StatsSection';
 import SurvivalForm from './components/SurvivalForm';
 import ResultsPage from './components/ResultsPage';
 import Footer from './components/Footer';
-import { supabase } from './lib/supabase';
-import { calculateSurvival } from './utils/survivalCalculator';
 import FactsSlideshow from './components/FactsSlideshow';
 
 interface FormData {
@@ -17,39 +15,16 @@ interface FormData {
   parents: number;
   children: number;
   siblings: number;
-  spouse : number;
+  spouse: number;
 }
 
-function App() {
-  const [showResults, setShowResults] = useState(false);
-  const [totalChecks, setTotalChecks] = useState(1042157);
-  const [result, setResult] = useState<{
-    survived: boolean;
-    probability: number;
-    name: string;
-    formData: FormData;
-  } | null>(null);
-
-  useEffect(() => {
-    fetchTotalSubmissions();
-  }, []);
-
-  const fetchTotalSubmissions = async () => {
-    const { count } = await supabase
-      .from('submissions')
-      .select('*', { count: 'exact', head: true });
-
-    if (count !== null) {
-      setTotalChecks(1042157 + count);
-    }
-  };
+function HomePage() {
+  const navigate = useNavigate();
 
   const handleNavigate = (section: string) => {
     if (section === 'home') {
-      setShowResults(false);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (section === 'check') {
-      setShowResults(false);
       const formSection = document.querySelector('form');
       formSection?.scrollIntoView({ behavior: 'smooth' });
     }
@@ -60,67 +35,30 @@ function App() {
     formSection?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleFormSubmit = async (data: FormData) => {
-    const survivalResult = await calculateSurvival({
-      gender: data.gender,
-      age: data.age,
-      ticketClass: data.ticketClass,
-      parents: data.parents,
-      children: data.children,
-      siblings: data.siblings,
-      spouse : data.spouse,
-    });
-
-    await supabase.from('submissions').insert([{
-      name: data.name,
-      gender: data.gender,
-      age: data.age,
-      ticket_class: data.ticketClass,
-      parents: data.parents,
-      children: data.children,
-      siblings: data.siblings,
-      survived: survivalResult.survived,
-      probability: survivalResult.probability,
-    }]);
-
-    setResult({
-      ...survivalResult,
-      name: data.name,
-      formData: data,
-    });
-    setShowResults(true);
-    await fetchTotalSubmissions();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleReset = () => {
-    setShowResults(false);
-    setResult(null);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handleFormSubmit = (data: FormData) => {
+    navigate('/results', { state: data });
   };
 
   return (
     <div className="min-h-screen bg-[#f5ead6]">
       <Navbar onNavigate={handleNavigate} />
-
-      {showResults && result ? (
-        <ResultsPage
-          survived={result.survived}
-          probability={result.probability}
-          name={result.name}
-          formData={result.formData}
-          onReset={handleReset}
-        />
-      ) : (
-        <>
-          <HeroSection onCheckSurvival={handleCheckSurvival} />
-          <StatsSection totalChecks={totalChecks} />
-          <SurvivalForm onSubmit={handleFormSubmit} />
-          <FactsSlideshow />
-          <Footer />
-        </>
-      )}
+      <HeroSection onCheckSurvival={handleCheckSurvival} />
+      <StatsSection />
+      <SurvivalForm onSubmit={handleFormSubmit} />
+      <FactsSlideshow />
+      <Footer />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/results" element={<ResultsPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

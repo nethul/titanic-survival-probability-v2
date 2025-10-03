@@ -1,11 +1,23 @@
 import { useEffect, useState } from 'react';
+import { supabase } from '../lib/supabase';
 
-interface StatsSectionProps {
-  totalChecks: number;
-}
-
-export default function StatsSection({ totalChecks }: StatsSectionProps) {
+export default function StatsSection() {
+  const [totalChecks, setTotalChecks] = useState(1042157);
   const [displayCount, setDisplayCount] = useState(0);
+
+  useEffect(() => {
+    const fetchTotalSubmissions = async () => {
+      const { count } = await supabase
+        .from('submissions')
+        .select('*', { count: 'exact', head: true });
+
+      if (count !== null) {
+        setTotalChecks(1042157 + count);
+      }
+    };
+
+    fetchTotalSubmissions();
+  }, []);
 
   useEffect(() => {
     const duration = 2000;
