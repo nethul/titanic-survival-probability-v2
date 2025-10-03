@@ -43,7 +43,7 @@ function HomePage() {
     <div className="min-h-screen bg-[#f5ead6]">
       <Navbar onNavigate={handleNavigate} />
       <HeroSection onCheckSurvival={handleCheckSurvival} />
-      <StatsSection />
+      {/* <StatsSection /> */}
       <SurvivalForm onSubmit={handleFormSubmit} />
       <FactsSlideshow />
       <Footer />
