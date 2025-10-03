@@ -6,6 +6,7 @@ import SurvivalFactorsBreakdown from './SurvivalFactorsBreakdown';
 import Footer from './Footer';
 import { supabase } from '../lib/supabase';
 import { calculateSurvival } from '../utils/survivalCalculator';
+import LoadingAnimation from './LoadingAnimation';
 
 interface FormData {
   name: string;
@@ -82,7 +83,7 @@ export default function ResultsPage() {
   };
 
   if (!result || !formData) {
-    return null;
+    return <LoadingAnimation />;
   }
 
   const shareMessage = `I just discovered my Titanic survival rate would be ${result.probability}%! 🚢 Think you'd survive? Test yours now!`;
